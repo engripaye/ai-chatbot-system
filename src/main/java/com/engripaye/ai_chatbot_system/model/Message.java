@@ -18,4 +18,7 @@ public class Message {
     private LocalDateTime timeStamp;
     private Double confidence; // AI Confidence score
     private boolean requireHandOff;
+
+
+
 }

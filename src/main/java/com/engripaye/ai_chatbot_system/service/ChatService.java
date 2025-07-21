@@ -2,6 +2,7 @@ package com.engripaye.ai_chatbot_system.service;
 
 import com.engripaye.ai_chatbot_system.model.Chat;
 import com.engripaye.ai_chatbot_system.model.Message;
+import com.engripaye.ai_chatbot_system.model.User;
 import com.engripaye.ai_chatbot_system.repository.ChatRepository;
 import com.engripaye.ai_chatbot_system.repository.MessageRepository;
 import com.engripaye.ai_chatbot_system.repository.UserRepository;
@@ -113,6 +114,10 @@ public class ChatService {
     private double estimateConfidence(String response){
 
         return response.length() > 50 ? 0.9 : 0.7;
+    }
+
+    public User saveUser(User user){
+        return userRepository.save(user);
     }
 
 }

@@ -36,6 +36,6 @@ public class ChatController {
 
     @PostMapping("/users")
     public User createUser(@RequestBody User user) {
-        return chatService.getUserRepository().save(user);
+        return chatService.saveUser(user);
     }
 }
