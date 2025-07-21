@@ -23,8 +23,8 @@ public class ChatService {
     @Getter
     private final UserRepository userRepository;
 
-    public ChatService(ChatClient chatClient, MessageRepository messageRepository, ChatRepository chatRepository, UserRepository userRepository) {
-        this.chatClient = chatClient;
+    public ChatService(ChatClient.Builder chatClientBuilder, MessageRepository messageRepository, ChatRepository chatRepository, UserRepository userRepository) {
+        this.chatClient = chatClientBuilder.build();
         this.messageRepository = messageRepository;
         this.chatRepository = chatRepository;
         this.userRepository = userRepository;
@@ -59,7 +59,10 @@ public class ChatService {
 
         // Generate Ai Response
         String prompt = "You are a customer support chatbot.  Provide a concise, helpful response to: " + question;
-        String aiResponse = chatClient.prompt(prompt).call().content();
+        String aiResponse = chatClient.prompt()
+                                .user(prompt)
+                                .call()
+                                .content();
         double confidence = estimateConfidence(aiResponse);
 
         Message aiMessage = new Message();
